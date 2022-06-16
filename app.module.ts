@@ -5,14 +5,18 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
-import { AuthService } from './src/services/auth.service';
-import { AuthController } from './src/controllers/auth.controller';
+import { AuthService } from './src/auth/auth.service';
+import { AuthController } from './src/auth/auth.controller';
 import { JwtStrategy } from './src/strategy/jwt.strategy';
-import { UsersModule } from 'src/users/users.module';
+import { LocalStrategy } from './src/strategy/local.srategy';
+
+import { ClientModule } from 'src/clients/clients.module';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   imports: [
-    UsersModule,
+    AuthModule,
+    ClientModule,
     PassportModule,
     ConfigModule.forRoot({
       load: [configuration],
@@ -30,6 +34,6 @@ import { UsersModule } from 'src/users/users.module';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, ConfigService, JwtStrategy],
+  providers: [AuthService, ConfigService, JwtStrategy, LocalStrategy],
 })
 export class AppModule {}

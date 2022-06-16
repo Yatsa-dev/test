@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 
-export const UserShema = new mongoose.Schema(
+export const ClientShema = new mongoose.Schema(
   {
     name: { type: String },
     lastName: { type: String },
@@ -10,7 +10,7 @@ export const UserShema = new mongoose.Schema(
   { versionKey: null },
 );
 
-export interface User {
+export interface Client {
   id: string;
   name: string;
   lastName: string;

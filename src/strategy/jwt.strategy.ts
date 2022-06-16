@@ -13,7 +13,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       secretOrKey: configService.get<string>('jwt.secret'),
     });
   }
-  async validate({ adminName, adminPassword }: UserPayload) {
-    return { adminName, adminPassword };
+  async validate({ name, password }: UserPayload) {
+    return { name, password };
   }
 }

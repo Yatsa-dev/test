@@ -1,4 +1,4 @@
 export type UserPayload = {
-  adminName: string;
-  adminPassword: string;
+  name: string;
+  password: string;
 };
