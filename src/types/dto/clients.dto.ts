@@ -10,10 +10,3 @@ export class ClientDTO {
   @IsNotEmpty()
   phone: number;
 }
-
-export class UserDTO {
-  @IsNotEmpty()
-  name: string;
-  @IsNotEmpty()
-  password: string;
-}

@@ -4,11 +4,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-
 import { AuthService } from './src/auth/auth.service';
 import { AuthController } from './src/auth/auth.controller';
 import { JwtStrategy } from './src/strategy/jwt.strategy';
-import { LocalStrategy } from './src/strategy/local.srategy';
 
 import { ClientModule } from 'src/clients/clients.module';
 import { AuthModule } from 'src/auth/auth.module';
@@ -34,6 +32,6 @@ import { AuthModule } from 'src/auth/auth.module';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, ConfigService, JwtStrategy, LocalStrategy],
+  providers: [AuthService, ConfigService, JwtStrategy],
 })
 export class AppModule {}

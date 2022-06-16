@@ -9,8 +9,8 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-// import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
-import { ClientDTO } from 'src/types/dto/users.dto';
+import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
+import { ClientDTO } from 'src/types/dto/clients.dto';
 import { ClientService } from './clients.service';
 
 @Controller('clients')
@@ -21,7 +21,7 @@ export class ClientController {
   @UsePipes(new ValidationPipe())
   async register(@Body() body: ClientDTO): Promise<object> {
     const user = await this.clientService.create(body);
-    return user;
+    return { user: user.id };
   }
 
   @Patch(':id')
@@ -33,12 +33,13 @@ export class ClientController {
     return await this.clientService.update(currentUserId, body);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   async getUserById(@Param('id') currentUserId: string) {
     return await this.clientService.getUserById(currentUserId);
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get()
   async getAllUsers(): Promise<object> {
     return await this.clientService.getUsers();
